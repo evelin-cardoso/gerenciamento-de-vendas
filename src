@@ -1,0 +1,44 @@
+CREATE DATABASE `Sistema_de_Gerenciamento_de_Vendas`;
+USE `Sistema_de_Gerenciamento_de_Vendas`;
+
+CREATE TABLE Clientes (
+  id_cliente INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  telefone VARCHAR(255) NOT NULL
+); 
+
+CREATE TABLE Produtos (
+  id_produto INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(255) NOT NULL,
+  preço DECIMAL(10,2) NOT NULL,
+  estoque INT NOT NULL
+);
+
+CREATE TABLE Vendas (
+  id_venda INT AUTO_INCREMENT PRIMARY KEY,
+  id_cliente INT NOT NULL,
+  id_produto INT NOT NULL,
+  quantidade_vendida INT NOT NULL,
+  dia_da_venda DATE NOT NULL,
+  FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente),
+  FOREIGN KEY (id_produto) REFERENCES Produtos(id_produto)
+);
+
+-- Inserindo dados na tabela Clientes (sem os valores do id_cliente)
+INSERT INTO Clientes (nome, email, telefone) VALUES
+('Ana Paula Pereira', 'anaapereira@gmail.com', '55 965438769'),
+('Daniel Rodriguez', 'daniel.rodriguezz@gmail.com', '48 985372308'),
+('Anderson Saraiva', 'andersonpsaraiva@gmail.com', '61 9548003274');
+
+-- Inserindo dados na tabela Produtos (sem os valores do id_produto)
+INSERT INTO Produtos (nome, preço, estoque) VALUES
+('Celular', 2400.00, 3),
+('Smart TV', 5400.00, 2),
+('Notebook', 3523.00, 5);
+
+-- Inserindo dados na tabela Vendas (sem os valores do id_venda)
+INSERT INTO Vendas (id_cliente, id_produto, quantidade_vendida, dia_da_venda) VALUES
+(1, 1, 1, '2024-06-01'),
+(2, 2, 1, '2024-04-26'),
+(3, 3, 1, '2024-08-04');
